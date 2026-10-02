@@ -1,0 +1,635 @@
+{
+  "app_family": "legacy-servicing",
+  "app_version": "1",
+  "checkpoint": {
+    "required_outputs": [
+      "balance",
+      "currency"
+    ],
+    "screen": "savings"
+  },
+  "entry_path": "/legacy",
+  "error_handlers": [
+    {
+      "category": "business",
+      "code": "NOT_FOUND",
+      "recovery_target": null,
+      "signal": "not_found"
+    },
+    {
+      "category": "business",
+      "code": "VALIDATION_ERROR",
+      "recovery_target": null,
+      "signal": "invalid_member"
+    },
+    {
+      "category": "hard",
+      "code": "PERMISSION_DENIED",
+      "recovery_target": null,
+      "signal": "permission_denied"
+    },
+    {
+      "category": "recoverable",
+      "code": "NOTICE",
+      "recovery_target": "continue_notice",
+      "signal": "maintenance_notice"
+    },
+    {
+      "category": "recoverable",
+      "code": "TRANSIENT_LOAD",
+      "recovery_target": "retry_load",
+      "signal": "transient_load"
+    },
+    {
+      "category": "intervention",
+      "code": "SESSION_EXPIRED",
+      "recovery_target": null,
+      "signal": "session_expired"
+    },
+    {
+      "category": "intervention",
+      "code": "UNEXPECTED_DIALOG",
+      "recovery_target": null,
+      "signal": "unexpected_dialog"
+    }
+  ],
+  "inputs": {
+    "member_id": {
+      "description": "Five-digit member identifier; never stored.",
+      "enum": null,
+      "pattern": "\\d{5}",
+      "sensitive": true,
+      "type": "string"
+    }
+  },
+  "name": "read_savings_balance",
+  "outputs": {
+    "balance": {
+      "description": "Decimal monetary amount represented as a string.",
+      "enum": null,
+      "pattern": "-?\\d+\\.\\d{2}",
+      "sensitive": true,
+      "type": "decimal"
+    },
+    "currency": {
+      "description": "ISO currency code.",
+      "enum": [
+        "USD"
+      ],
+      "pattern": null,
+      "sensitive": false,
+      "type": "string"
+    }
+  },
+  "profile_digest": "ab0629789c6a9d1aa3a4a8c5fc1a7c685ae74b869512d1e75dac97cc6d53e216",
+  "revision": 2,
+  "schema_version": "1.0",
+  "steps": [
+    {
+      "action": {
+        "kind": "navigate",
+        "output": null,
+        "parameter": null,
+        "path": "/legacy",
+        "target": null
+      },
+      "after": "search",
+      "before": "any",
+      "index": 0
+    },
+    {
+      "action": {
+        "kind": "fill",
+        "output": null,
+        "parameter": "member_id",
+        "path": null,
+        "target": "member_number"
+      },
+      "after": "search",
+      "before": "search",
+      "index": 1
+    },
+    {
+      "action": {
+        "kind": "click",
+        "output": null,
+        "parameter": null,
+        "path": null,
+        "target": "search"
+      },
+      "after": "results",
+      "before": "search",
+      "index": 2
+    },
+    {
+      "action": {
+        "kind": "click",
+        "output": null,
+        "parameter": null,
+        "path": null,
+        "target": "open_member"
+      },
+      "after": "member",
+      "before": "results",
+      "index": 3
+    },
+    {
+      "action": {
+        "kind": "click",
+        "output": null,
+        "parameter": null,
+        "path": null,
+        "target": "view_accounts"
+      },
+      "after": "accounts",
+      "before": "member",
+      "index": 4
+    },
+    {
+      "action": {
+        "kind": "click",
+        "output": null,
+        "parameter": null,
+        "path": null,
+        "target": "savings"
+      },
+      "after": "savings",
+      "before": "accounts",
+      "index": 5
+    },
+    {
+      "action": {
+        "kind": "extract",
+        "output": "balance",
+        "parameter": null,
+        "path": null,
+        "target": "balance"
+      },
+      "after": "savings",
+      "before": "savings",
+      "index": 6
+    },
+    {
+      "action": {
+        "kind": "extract",
+        "output": "currency",
+        "parameter": null,
+        "path": null,
+        "target": "currency"
+      },
+      "after": "savings",
+      "before": "savings",
+      "index": 7
+    }
+  ],
+  "targets": {
+    "accounts_screen": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Member accounts"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "acknowledge_warning": {
+      "action": "click",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": "button",
+          "strategy": "role",
+          "value": "Acknowledge warning"
+        },
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Acknowledge warning"
+        }
+      ],
+      "purpose": "Exact accessible name, then exact visible text; ambiguous matches fail closed.",
+      "retry_safe": true,
+      "risk": "human_only"
+    },
+    "balance": {
+      "action": "extract",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "table_value",
+          "value": "Available balance"
+        }
+      ],
+      "purpose": "Unique row label and adjacent value cell; no dynamic IDs or coordinates.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "close_account": {
+      "action": "click",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": "button",
+          "strategy": "role",
+          "value": "Close account"
+        },
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Close account"
+        }
+      ],
+      "purpose": "Exact accessible name, then exact visible text; ambiguous matches fail closed.",
+      "retry_safe": true,
+      "risk": "forbidden"
+    },
+    "continue_notice": {
+      "action": "click",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": "button",
+          "strategy": "role",
+          "value": "Continue"
+        },
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Continue"
+        }
+      ],
+      "purpose": "Exact accessible name, then exact visible text; ambiguous matches fail closed.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "currency": {
+      "action": "extract",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "table_value",
+          "value": "Currency"
+        }
+      ],
+      "purpose": "Read the value adjacent to a unique static row label.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "invalid_member": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Invalid member number"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "maintenance_notice": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Maintenance notice"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "member_number": {
+      "action": "fill",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "label",
+          "value": "Member number"
+        },
+        {
+          "role": null,
+          "strategy": "table_input",
+          "value": "Member number"
+        }
+      ],
+      "purpose": "Label preferred; legacy fallback anchors a unique row label to its input.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "member_screen": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Member overview"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "not_found": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "No such member"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "open_member": {
+      "action": "click",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": "link",
+          "strategy": "role",
+          "value": "Open member"
+        },
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Open member"
+        }
+      ],
+      "purpose": "Exact accessible name, then exact visible text; ambiguous matches fail closed.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "permission_denied": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Permission denied"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "restore_session": {
+      "action": "click",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": "button",
+          "strategy": "role",
+          "value": "Restore session"
+        },
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Restore session"
+        }
+      ],
+      "purpose": "Exact accessible name, then exact visible text; ambiguous matches fail closed.",
+      "retry_safe": true,
+      "risk": "human_only"
+    },
+    "results_screen": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Search results"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "retry_load": {
+      "action": "click",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": "button",
+          "strategy": "role",
+          "value": "Retry"
+        },
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Retry"
+        }
+      ],
+      "purpose": "Exact accessible name, then exact visible text; ambiguous matches fail closed.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "savings": {
+      "action": "click",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": "link",
+          "strategy": "role",
+          "value": "Savings"
+        },
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Savings"
+        }
+      ],
+      "purpose": "Exact accessible name, then exact visible text; ambiguous matches fail closed.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "savings_screen": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Savings account"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "search": {
+      "action": "click",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": "button",
+          "strategy": "role",
+          "value": "Search"
+        },
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Search"
+        }
+      ],
+      "purpose": "Exact accessible name, then exact visible text; ambiguous matches fail closed.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "search_screen": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Member lookup"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "session_expired": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Session expired"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "transient_load": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Service temporarily unavailable"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "unexpected_dialog": {
+      "action": "signal",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Unexpected confirmation"
+        }
+      ],
+      "purpose": "Exact reviewed status text.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "version_marker": {
+      "action": "signal",
+      "frames": [],
+      "locators": [
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "Legacy Servicing / version 1"
+        }
+      ],
+      "purpose": "Fail closed if the reviewed vendor version is not present.",
+      "retry_safe": true,
+      "risk": "reversible"
+    },
+    "view_accounts": {
+      "action": "click",
+      "frames": [
+        "Legacy workspace"
+      ],
+      "locators": [
+        {
+          "role": "link",
+          "strategy": "role",
+          "value": "View accounts"
+        },
+        {
+          "role": null,
+          "strategy": "text",
+          "value": "View accounts"
+        }
+      ],
+      "purpose": "Exact accessible name, then exact visible text; ambiguous matches fail closed.",
+      "retry_safe": true,
+      "risk": "reversible"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=82.0.1,<83"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "capability-runner"
+version = "1.0.0"
+description = "Policy-constrained computer use: discover, record, replay, and hand off a live browser."
+requires-python = ">=3.11,<3.14"
+authors = [{name = "Ahmed Nawaz Shaik"}]
+dependencies = [
+  "fastapi==0.128.2", "pydantic==2.13.4", "httpx==0.28.1",
+  "playwright==1.57.0", "uvicorn==0.48.0", "python-dotenv==1.2.2"
+]
+
+[project.optional-dependencies]
+test = ["pytest==9.0.2", "pytest-asyncio==1.3.0", "pytest-cov==7.0.0", "jsonschema==4.26.0"]
+
+[project.scripts]
+cu-runner = "capability_runner.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+capability_runner = ["static/*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+addopts = "-ra"
+markers = ["browser: uses a real Chromium browser", "live_model: requires an explicitly configured LLM service"]
+
+[tool.coverage.run]
+source = ["capability_runner"]
+omit = ["*/cli.py", "*/sandbox.py"]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true

@@ -1,0 +1,62 @@
+[
+  {
+    "code": "OK",
+    "directory": "replay",
+    "llm_calls": 0,
+    "operator": "none",
+    "run_id": "1baccf67fbfd41cfad64da249d3a2755",
+    "same_session_verified": true,
+    "status": "success",
+    "transport": "real-localhost-HTTP-to-live-Chromium"
+  },
+  {
+    "code": "NOT_FOUND",
+    "directory": "not-found",
+    "llm_calls": 0,
+    "operator": "none",
+    "run_id": "20eed38d121a4e02a9d9abd57aa9b6ae",
+    "same_session_verified": true,
+    "status": "business_outcome",
+    "transport": "real-localhost-HTTP-to-live-Chromium"
+  },
+  {
+    "code": "VALIDATION_ERROR",
+    "directory": "validation",
+    "llm_calls": 0,
+    "operator": "none",
+    "run_id": "26a8f976a83d4c5ca72869523ec598f2",
+    "same_session_verified": true,
+    "status": "business_outcome",
+    "transport": "real-localhost-HTTP-to-live-Chromium"
+  },
+  {
+    "code": "OK",
+    "directory": "recovery",
+    "llm_calls": 0,
+    "operator": "none",
+    "run_id": "b79ffffed8de4107851379d36449a652",
+    "same_session_verified": true,
+    "status": "success",
+    "transport": "real-localhost-HTTP-to-live-Chromium"
+  },
+  {
+    "code": "OK",
+    "directory": "handoff",
+    "llm_calls": 0,
+    "operator": "automated-test-stand-in",
+    "run_id": "8f0eec6164ce4dbb8427a176c608e753",
+    "same_session_verified": true,
+    "status": "success",
+    "transport": "real-localhost-HTTP-to-live-Chromium"
+  },
+  {
+    "code": "RUN_CANCELLED",
+    "directory": "hard-failure",
+    "llm_calls": 0,
+    "operator": "automated-test-stand-in",
+    "run_id": "6555f8059c6a4cfc904028b6b12b6a8a",
+    "same_session_verified": true,
+    "status": "failure",
+    "transport": "real-localhost-HTTP-to-live-Chromium"
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "allowed_origins": [
+    "http://127.0.0.1:8765",
+    "sandbox://legacy"
+  ],
+  "allowed_routes": {
+    "/legacy": [
+      "GET"
+    ]
+  },
+  "allowed_actions": [
+    "navigate",
+    "click",
+    "fill",
+    "extract"
+  ],
+  "allowed_query": {
+    "scenario": [
+      "normal",
+      "notice",
+      "transient",
+      "outage",
+      "session",
+      "permission",
+      "dialog",
+      "slow",
+      "drift",
+      "ambiguous"
+    ]
+  },
+  "max_recoveries": 2
+}

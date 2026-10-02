@@ -1,0 +1,52 @@
+{
+  "verified_at_utc": "2026-09-28T15:13:00Z",
+  "python": "3.13.9",
+  "platform": "macOS",
+  "browser": "Chromium 143.0.7499.4",
+  "versions": {
+    "fastapi": "0.128.2",
+    "pydantic": "2.13.4",
+    "httpx": "0.28.1",
+    "playwright": "1.57.0",
+    "uvicorn": "0.48.0",
+    "python-dotenv": "1.2.2",
+    "pytest": "9.0.2",
+    "pytest-asyncio": "1.3.0",
+    "pytest-cov": "7.0.0"
+  },
+  "tests": {
+    "passed": 107,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 43.088
+  },
+  "core_statement_coverage_percent": 88.99,
+  "coverage_scope": "Core package; CLI/service launch wrapper and HTML-delivery wrapper excluded by pyproject.toml",
+  "runtime_dependency_distributions_checked": 22,
+  "package_modules_imported": 12,
+  "python_compilation": "passed",
+  "javascript_syntax_checks": "passed",
+  "editable_install": "passed; dependencies installed into a fresh local virtual environment",
+  "wheel_build": "passed",
+  "wheel_install": "passed in separate venv; existing dependency directory explicitly reused",
+  "real_localhost_service_demo": "passed; typed outputs/checkpoint validated; zero model calls",
+  "genuine_discovery": "ChatGPT external decision bridge plus direct OpenAI API gpt-4o-mini discovery; each made 8 decisions against the live bundled Chromium UI",
+  "provider_discovery": "passed 2026-10-02; read_savings_balance.v2; changed-input replay passed with zero model calls",
+  "replay_evidence_cases": 6,
+  "console_test": "actual console JS + actual FastAPI + actual live browser; test-only ASGI fetch transport",
+  "unverified": [
+    "HTTP browser navigation/delivery under managed policy",
+    "Remote GitHub Actions execution",
+    "Python 3.11, Python 3.12, and non-macOS platforms in the refreshed run"
+  ],
+  "not_applicable": [
+    "SQL database/migrations",
+    "Docker/Compose",
+    "Cloud deployment"
+  ],
+  "not_performed": [
+    "Publishing public GitHub repository",
+    "Sending employer email"
+  ]
+}

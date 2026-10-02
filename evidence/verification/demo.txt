@@ -1,0 +1,7 @@
+Command: python scripts/demo.py
+Result: PASS
+Verified: 28 September 2026 on macOS with Python 3.13.9 and Chromium 143.0.7499.4.
+Both real localhost services started and stopped.
+Actual Chromium replay returned validated outputs and passed its final checkpoint.
+Model calls: 0
+Output values: not retained in this verification record.

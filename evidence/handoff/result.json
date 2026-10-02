@@ -1,0 +1,17 @@
+{
+  "artifact": "read_savings_balance.v1",
+  "code": "OK",
+  "expected": "savings",
+  "interventions": 1,
+  "llm_calls": 0,
+  "observed": [
+    "screen:savings"
+  ],
+  "outputs": {
+    "balance": "[REDACTED]",
+    "currency": "[REDACTED]"
+  },
+  "run_id": "8f0eec6164ce4dbb8427a176c608e753",
+  "status": "success",
+  "step": 7
+}

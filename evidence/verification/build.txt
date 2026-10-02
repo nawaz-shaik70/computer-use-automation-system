@@ -1,0 +1,8 @@
+Editable application installation: PASS (no-index; dependencies already installed).
+Wheel build: PASS (setuptools; no dependencies bundled).
+Separate-environment wheel install/import: PASS, including static assets.
+Dependency packages were explicitly reused from the verified environment, not freshly downloaded.
+Runtime dependency closure: 22 distributions validated on 28 September 2026.
+All package modules import successfully.
+All Python files compile; both JavaScript files pass node --check.
+CI YAML parses; remote CI execution was not attempted.

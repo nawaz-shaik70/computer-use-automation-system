@@ -1,0 +1,15 @@
+{
+  "artifact": null,
+  "code": "VALIDATION_ERROR",
+  "expected": "results",
+  "interventions": 0,
+  "llm_calls": 0,
+  "observed": [
+    "screen:unknown",
+    "invalid_member"
+  ],
+  "outputs": {},
+  "run_id": "26a8f976a83d4c5ca72869523ec598f2",
+  "status": "business_outcome",
+  "step": 2
+}

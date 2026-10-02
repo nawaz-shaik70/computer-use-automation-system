@@ -1,0 +1,18 @@
+Verification date: 28 September 2026
+Result: 107 passed, 0 failed, 0 skipped in 43.09 seconds.
+Platform: macOS; Python 3.13.9; Playwright 1.57.0; Chromium 143.0.7499.4.
+
+| Name                                   |    Stmts |     Miss |   Cover |   Missing |
+|--------------------------------------- | -------: | -------: | ------: | --------: |
+| src/capability\_runner/\_\_init\_\_.py |        1 |        0 |    100% |           |
+| src/capability\_runner/api.py          |      206 |       23 |     89% |84, 86, 96, 110-111, 135, 139, 143, 180-181, 187-188, 221, 250-252, 256-262 |
+| src/capability\_runner/control.py      |      105 |        2 |     98% |    53, 98 |
+| src/capability\_runner/engine.py       |      316 |       52 |     84% |38, 42, 83, 90-93, 98, 110, 112, 115, 133-134, 140, 156-158, 161-162, 165-166, 180-181, 189-190, 202-206, 218-222, 273-275, 279, 284, 299-300, 306, 320, 338, 341-342, 370-375 |
+| src/capability\_runner/planner.py      |      104 |       14 |     87% |76-80, 101, 132, 135-136, 146-150 |
+| src/capability\_runner/policy.py       |       61 |        7 |     89% |28, 35, 55, 58, 60, 64, 72 |
+| src/capability\_runner/profile.py      |       30 |        0 |    100% |           |
+| src/capability\_runner/schema.py       |      144 |       10 |     93% |28, 34, 38-39, 51, 120, 122, 127, 132, 137 |
+| src/capability\_runner/settings.py     |       38 |        5 |     87% |     34-38 |
+| src/capability\_runner/storage.py      |       89 |        3 |     97% |32, 59, 119 |
+| src/capability\_runner/surface.py      |      169 |       25 |     85% |51, 63, 73, 80-81, 92-93, 98-100, 132, 147-148, 158, 160, 168, 175, 180, 191-194, 217-218, 224 |
+| **TOTAL**                              | **1263** |  **141** | **89%** |           |

@@ -1,0 +1,437 @@
+{
+  "$defs": {
+    "Action": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "navigate",
+            "click",
+            "fill",
+            "extract"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z][a-z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target"
+        },
+        "parameter": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z][a-z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parameter"
+        },
+        "output": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z][a-z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output"
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Path"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "Action",
+      "type": "object"
+    },
+    "Checkpoint": {
+      "additionalProperties": false,
+      "properties": {
+        "screen": {
+          "pattern": "^[a-z][a-z0-9_]{0,63}$",
+          "title": "Screen",
+          "type": "string"
+        },
+        "required_outputs": {
+          "items": {
+            "pattern": "^[a-z][a-z0-9_]{0,63}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Required Outputs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "screen",
+        "required_outputs"
+      ],
+      "title": "Checkpoint",
+      "type": "object"
+    },
+    "ErrorHandler": {
+      "additionalProperties": false,
+      "properties": {
+        "signal": {
+          "pattern": "^[a-z][a-z0-9_]{0,63}$",
+          "title": "Signal",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "business",
+            "recoverable",
+            "hard",
+            "intervention"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "code": {
+          "pattern": "^[A-Z_]{1,64}$",
+          "title": "Code",
+          "type": "string"
+        },
+        "recovery_target": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z][a-z0-9_]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recovery Target"
+        }
+      },
+      "required": [
+        "signal",
+        "category",
+        "code"
+      ],
+      "title": "ErrorHandler",
+      "type": "object"
+    },
+    "LocatorSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "strategy": {
+          "enum": [
+            "label",
+            "role",
+            "text",
+            "table_input",
+            "table_value"
+          ],
+          "title": "Strategy",
+          "type": "string"
+        },
+        "value": {
+          "maxLength": 120,
+          "minLength": 1,
+          "title": "Value",
+          "type": "string"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "enum": [
+                "button",
+                "link",
+                "textbox",
+                "heading"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Role"
+        }
+      },
+      "required": [
+        "strategy",
+        "value"
+      ],
+      "title": "LocatorSpec",
+      "type": "object"
+    },
+    "Parameter": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "string",
+            "integer",
+            "boolean",
+            "decimal"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 160,
+          "title": "Description",
+          "type": "string"
+        },
+        "sensitive": {
+          "default": true,
+          "title": "Sensitive",
+          "type": "boolean"
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pattern"
+        },
+        "enum": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Enum"
+        }
+      },
+      "required": [
+        "type",
+        "description"
+      ],
+      "title": "Parameter",
+      "type": "object"
+    },
+    "Step": {
+      "additionalProperties": false,
+      "properties": {
+        "index": {
+          "minimum": 0,
+          "title": "Index",
+          "type": "integer"
+        },
+        "action": {
+          "$ref": "#/$defs/Action"
+        },
+        "before": {
+          "title": "Before",
+          "type": "string"
+        },
+        "after": {
+          "title": "After",
+          "type": "string"
+        }
+      },
+      "required": [
+        "index",
+        "action",
+        "before",
+        "after"
+      ],
+      "title": "Step",
+      "type": "object"
+    },
+    "TargetSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "frames": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Frames",
+          "type": "array"
+        },
+        "locators": {
+          "items": {
+            "$ref": "#/$defs/LocatorSpec"
+          },
+          "maxItems": 3,
+          "minItems": 1,
+          "title": "Locators",
+          "type": "array"
+        },
+        "purpose": {
+          "maxLength": 200,
+          "title": "Purpose",
+          "type": "string"
+        },
+        "risk": {
+          "default": "reversible",
+          "enum": [
+            "reversible",
+            "human_only",
+            "forbidden"
+          ],
+          "title": "Risk",
+          "type": "string"
+        },
+        "retry_safe": {
+          "default": true,
+          "title": "Retry Safe",
+          "type": "boolean"
+        },
+        "action": {
+          "enum": [
+            "click",
+            "fill",
+            "extract",
+            "signal"
+          ],
+          "title": "Action",
+          "type": "string"
+        }
+      },
+      "required": [
+        "locators",
+        "purpose",
+        "action"
+      ],
+      "title": "TargetSpec",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "name": {
+      "pattern": "^[a-z][a-z0-9_]{0,63}$",
+      "title": "Name",
+      "type": "string"
+    },
+    "revision": {
+      "minimum": 1,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "app_family": {
+      "const": "legacy-servicing",
+      "default": "legacy-servicing",
+      "title": "App Family",
+      "type": "string"
+    },
+    "app_version": {
+      "const": "1",
+      "default": "1",
+      "title": "App Version",
+      "type": "string"
+    },
+    "profile_digest": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Profile Digest",
+      "type": "string"
+    },
+    "entry_path": {
+      "const": "/legacy",
+      "default": "/legacy",
+      "title": "Entry Path",
+      "type": "string"
+    },
+    "inputs": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_]{0,63}$": {
+          "$ref": "#/$defs/Parameter"
+        }
+      },
+      "title": "Inputs",
+      "type": "object"
+    },
+    "outputs": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_]{0,63}$": {
+          "$ref": "#/$defs/Parameter"
+        }
+      },
+      "title": "Outputs",
+      "type": "object"
+    },
+    "targets": {
+      "patternProperties": {
+        "^[a-z][a-z0-9_]{0,63}$": {
+          "$ref": "#/$defs/TargetSpec"
+        }
+      },
+      "title": "Targets",
+      "type": "object"
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/Step"
+      },
+      "maxItems": 50,
+      "minItems": 2,
+      "title": "Steps",
+      "type": "array"
+    },
+    "checkpoint": {
+      "$ref": "#/$defs/Checkpoint"
+    },
+    "error_handlers": {
+      "items": {
+        "$ref": "#/$defs/ErrorHandler"
+      },
+      "title": "Error Handlers",
+      "type": "array"
+    }
+  },
+  "required": [
+    "name",
+    "revision",
+    "profile_digest",
+    "inputs",
+    "outputs",
+    "targets",
+    "steps",
+    "checkpoint",
+    "error_handlers"
+  ],
+  "title": "Capability",
+  "type": "object"
+}

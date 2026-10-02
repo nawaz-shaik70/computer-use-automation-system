@@ -1,0 +1,15 @@
+{
+  "artifact": null,
+  "code": "RUN_CANCELLED",
+  "expected": "savings",
+  "interventions": 1,
+  "llm_calls": 0,
+  "observed": [
+    "screen:unknown",
+    "permission_denied"
+  ],
+  "outputs": {},
+  "run_id": "6555f8059c6a4cfc904028b6b12b6a8a",
+  "status": "failure",
+  "step": 5
+}

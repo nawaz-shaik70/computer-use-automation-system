@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Capability Runner / Operator workspace</title>
+  <link rel="icon" href="data:,"><link rel="stylesheet" href="/static/console.css">
+  <script src="/static/console.js" defer></script>
+</head>
+<body>
+  <header><div class="brand"><span class="mark">C</span><div>CAPABILITY RUNNER<span class="sub">Computer-use control plane</span></div></div><span class="pill">LOCAL SANDBOX</span></header>
+  <main>
+    <section class="intro"><p class="eyebrow">HUMAN IN THE LOOP</p><h1>Operator workspace</h1><p>Inspect an intervention, claim the live browser, then return control to automation.</p></section>
+    <section class="connection card"><div><label for="token">Operator access token</label><div class="inline"><input id="token" type="password" autocomplete="off" placeholder="OPERATOR_TOKEN from your local .env"><button id="connect">Connect</button></div></div><p id="connection-status" role="status">Disconnected. Tokens are held in page memory only.</p></section>
+    <div class="workspace">
+      <aside class="card"><div class="card-heading"><h2>Intervention queue</h2><button id="refresh" class="secondary" disabled>Refresh</button></div><div id="queue"><p class="empty">Connect to view paused runs.</p></div></aside>
+      <section class="card session"><div class="card-heading"><h2>Live session</h2><span id="state" class="pill">NO RUN SELECTED</span></div><p id="context" class="muted">The original browser context stays open throughout handoff.</p><dl id="details"></dl>
+        <div class="toolbar"><button id="claim" disabled>Claim control</button><button id="renew" class="secondary" disabled>Renew lease</button><button id="resume" disabled>Resume automation</button><button id="cancel" class="danger" disabled>Cancel run</button></div>
+        <div id="screen-placeholder" class="screen-placeholder">A live screenshot is available after you claim control.<br><span>Images are not written to disk.</span></div><img id="screen" alt="Live browser session" hidden>
+        <div class="action-box"><label for="control">Available control</label><div class="inline"><select id="control" disabled><option>Select a live control</option></select><button id="act" disabled>Perform action</button><button id="refresh-screen" class="secondary" disabled>Refresh screen</button></div><p class="muted">Only reviewed controls are exposed. Irreversible actions remain blocked, even for operators.</p></div>
+      </section>
+    </div>
+    <section class="card"><div class="card-heading"><h2>Activity</h2><span class="muted">No input values or secrets are recorded here</span></div><pre id="activity" role="log">Workspace ready.</pre></section>
+    <footer>Discover with a model. Execute with a contract. Hand off without losing the session.</footer>
+  </main>
+</body>
+</html>

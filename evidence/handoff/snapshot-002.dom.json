@@ -1,0 +1,120 @@
+{
+  "format": "redacted-dom-v1",
+  "frames": [
+    {
+      "index": 0,
+      "nodes": [
+        {
+          "height": 29,
+          "tag": "h1",
+          "text": "Legacy Servicing / version 1",
+          "width": 1120,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 720,
+          "tag": "iframe",
+          "text": "",
+          "width": 1120,
+          "x": 30,
+          "y": 77
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "nodes": [
+        {
+          "height": 195,
+          "tag": "main",
+          "text": "",
+          "width": 1058,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 29,
+          "tag": "h1",
+          "text": "Session expired",
+          "width": 1058,
+          "x": 30,
+          "y": 30
+        },
+        {
+          "height": 148,
+          "tag": "table",
+          "text": "",
+          "width": 1058,
+          "x": 30,
+          "y": 77
+        },
+        {
+          "height": 147,
+          "tag": "tbody",
+          "text": "",
+          "width": 1057,
+          "x": 31,
+          "y": 78
+        },
+        {
+          "height": 147,
+          "tag": "tr",
+          "text": "",
+          "width": 1057,
+          "x": 31,
+          "y": 78
+        },
+        {
+          "height": 147,
+          "tag": "td",
+          "text": "",
+          "width": 1057,
+          "x": 31,
+          "y": 78
+        },
+        {
+          "height": 25,
+          "tag": "p",
+          "text": "[REDACTED]",
+          "width": 1004,
+          "x": 57,
+          "y": 120
+        },
+        {
+          "height": 37,
+          "tag": "form",
+          "text": "",
+          "width": 1004,
+          "x": 57,
+          "y": 161
+        },
+        {
+          "height": 37,
+          "tag": "button",
+          "text": "Restore session",
+          "width": 141,
+          "x": 57,
+          "y": 161
+        },
+        {
+          "height": 19,
+          "tag": "p",
+          "text": "Synthetic data only",
+          "width": 1058,
+          "x": 30,
+          "y": 240
+        },
+        {
+          "height": 0,
+          "tag": "script",
+          "text": "[REDACTED]",
+          "width": 0,
+          "x": 0,
+          "y": 0
+        }
+      ]
+    }
+  ],
+  "session_id": "925eef3a96ca49c3b930e7fdaa25f601"
+}
